@@ -1,0 +1,51 @@
+{
+  "name": "sqs-queue-lambda",
+  "version": "1.0.0",
+  "description": "Deploy SQS queue and Lambda functions using Serverless",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "serve:development": "dotenv -e .env.local sls offline start --noTimeout"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcomoauro/sqs-queue-lambda.git"
+  },
+  "keywords": [
+    "deploy",
+    "sqs",
+    "queue",
+    "aws",
+    "lambda",
+    "serverless"
+  ],
+  "author": "Marco Moauro <marcomoauro@hotmail.it>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcomoauro/sqs-queue-lambda/issues"
+  },
+  "homepage": "https://github.com/marcomoauro/sqs-queue-lambda#readme",
+  "dependencies": {
+    "@koa/cors": "5.0.0",
+    "@koa/router": "12.0.1",
+    "aws-sdk": "^2.1656.0",
+    "axios": "1.6.8",
+    "jsonwebtoken": "9.0.2",
+    "koa": "2.15.3",
+    "koa-better-json": "2.5.0",
+    "koa-better-log": "1.0.5",
+    "koa-body": "6.0.1",
+    "lodash": "4.17.21",
+    "luxon": "^3.4.4",
+    "nano-id": "1.1.0",
+    "p-queue": "8.0.1",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "serverless-offline": "^13.6.0"
+  }
+}

@@ -1,0 +1,24 @@
+org: implementing
+service: sqs-queue-lambda
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-west-2
+  tags:
+    Name: sqs-queue-lambda
+
+plugins:
+  - serverless-offline
+
+functions:
+  app:
+    handler: lambda.handler
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+
+custom:
+  serverless-offline:
+    reloadHandler: true
