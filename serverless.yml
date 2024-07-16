@@ -7,9 +7,24 @@ provider:
   region: eu-west-2
   tags:
     Name: sqs-queue-lambda
+  environment:
+    QUEUE_URL: ${self:custom.queue.url}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - sqs:SendMessage
+      Resource: ${self:custom.queue.arn}
 
 plugins:
   - serverless-offline
+
+resources:
+  Resources:
+    queue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: queue.fifo
+        FifoQueue: true
 
 functions:
   app:
@@ -18,7 +33,16 @@ functions:
       - httpApi:
           path: /{proxy+}
           method: ANY
+  consumer:
+    handler: consumer.handler
+    events:
+      - sqs:
+          arn: ${self:custom.queue.arn}
+          batchSize: 1
 
 custom:
   serverless-offline:
     reloadHandler: true
+  queue:
+    arn: !GetAtt queue.Arn
+    url: !Ref queue
